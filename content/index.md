@@ -32,7 +32,7 @@ CodeHub es una **plataforma descentralizada** que revoluciona cómo los desarrol
 - **[[4 - Tokenomics]]** - Distribución de tokens, incentivos y mecánicas de recompensa
 - **[[5 - Whitepaper]]** - Documento técnico completo del proyecto
 
-### 🎨 **Marco de Diseño**
+### 🎨 **[[Framework de diseño/|Marco de Diseño]]**
 - **[[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]** - Problema, solución y ventaja competitiva
 - **[[Framework de diseño/2 - Value proposition canvas]]** - Canvas detallado de propuesta de valor
 - **[[Framework de diseño/3 - Conexión Negocio - Token]]** - Cómo el token se integra con el modelo de negocio

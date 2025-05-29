@@ -1,5 +1,7 @@
 ## 🪙 Token: `CodeToken` (`CODE`)
 
+> 🔗 **Contexto**: [[2 - Modelo de negocio]] | [[1 - Arquitectura]] | [[3 - Monetización]] | [[Framework de diseño/3 - Conexión Negocio - Token]]
+
 ### 🎯 Propósito
 
 Token utility usado para:
@@ -8,9 +10,11 @@ Token utility usado para:
     
 - Acceder a funciones premium y features exclusivas.
     
-- Participar en la gobernanza mediante votación en la DAO.
+- Participar en la gobernanza mediante votación en la [[2 - Modelo de negocio#DAO|DAO]].
     
 - Reconocer reputación mediante staking o votación.
+
+> ⚙️ **Implementación**: [[1 - Arquitectura#Smart Contracts]]
 
 ---
 
@@ -26,6 +30,8 @@ Token utility usado para:
 |Liquidity Pool (DEX)|`100,000 CODE`|`10%`|Emparejados con USDC o ETH en DEX|
 |Reservado (opcional)|`50,000 CODE`|`5%`|Emergencias o alianzas aprobadas por la DAO|
 
+> 💰 **Monetización**: Ver [[3 - Monetización]] para streams de ingresos
+
 ---
 
 ## ⛓️ Política de emisión
@@ -35,6 +41,8 @@ Token utility usado para:
 - Toda emisión futura o modificación de supply debe ser aprobada por la DAO mediante `Governor`.
     
 - Recompensas se distribuyen on-chain a través de funciones validadas por la comunidad.
+
+> 🔧 **Detalles técnicos**: [[1 - Arquitectura#Funciones clave de la DAO]]
 
 ---
 
@@ -78,6 +86,8 @@ Token utility usado para:
     
 - Descuentos y beneficios al usar CODE para pagar servicios premium.
 
+> 💡 **Casos de uso**: [[Framework de diseño/2 - Value proposition canvas]] | [[index#Casos de Uso]]
+
 ---
 
 ## 🗳️ Gobernanza DAO
@@ -96,9 +106,11 @@ Token utility usado para:
 
 **Decisiones gestionadas:** emisión de nuevos tokens, distribución especial, financiamiento de features y grants, ajustes económicos, alianzas.
 
+> 🏛️ **Modelo de gobernanza**: [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
+
 ---
 
-## Propuesta de implementación (Tokenomics)
+## 📊 Cálculo de Recompensas
 
 Para alinear las recompensas con el valor real generado por cada publicación y garantizar la sostenibilidad de la economía de tokens CODE, se propone el siguiente esquema:
 
@@ -117,7 +129,9 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
     La recompensa total por publicación no podrá exceder los **100 CODE**.
     
 4. **Comisión de reclamación**  
-    Al reclamar tokens, se aplica una tasa del **2 %** que se destina al **treasury de la DAO** para financiar mejoras, grants y liquidez.
+    Al reclamar tokens, se aplica una tasa del **2 %** que se destina al **treasury de la DAO** para financiar mejoras, grants y liquidez.
+
+> 🔧 **Implementación técnica**: [[1 - Arquitectura#calculatePostReward]] | [[3 - Monetización#Comisiones]]
 
 ---
 
@@ -130,3 +144,16 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
 - Gobernanza efectiva sobre economía y evolución de la plataforma.
     
 - Ecosistema autosostenible con potencial de valorización.
+
+> 🎯 **Visión completa**: [[5 - Whitepaper]] | [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
+
+---
+
+## 📊 Documentos Relacionados
+
+- [[1 - Arquitectura]] - Implementación técnica del token y smart contracts
+- [[2 - Modelo de negocio]] - Roles del sistema y flujo de valor
+- [[3 - Monetización]] - Streams de ingresos y modelo económico
+- [[5 - Whitepaper]] - Documento técnico completo
+- [[Framework de diseño/|Framework de diseño]] - Marco conceptual y propuesta de valor
+- [[index]] - Página principal del proyecto

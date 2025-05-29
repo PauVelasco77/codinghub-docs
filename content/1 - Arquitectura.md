@@ -1,5 +1,7 @@
 ## ⚙️ **Arquitectura del Proyecto**
 
+> Ver también: [[2 - Modelo de negocio|Modelo de Negocio]] | [[4 - Tokenomics]] | [[Framework de diseño/3 - Conexión Negocio - Token]]
+
 #### 1. **Smart Contracts (Solidity + Viem)**
 
 - Token ERC-20 (`CODE`) con extensión `ERC20Votes` para gobernanza.
@@ -35,9 +37,11 @@
     }
     return total;
     ```
+    > 💡 Para más detalles sobre esta fórmula, consulta [[4 - Tokenomics#Cálculo de Recompensas]]
     
 - `applyClaimCommission(uint256 amount) returns (uint256 netAmount)`  
     Aplica una comisión del 2% y transfiere esa parte al `DAO Treasury`.
+    > 💰 Ver [[3 - Monetización]] para entender el modelo de comisiones
     
 - `awardTokens(address user, uint256 visits)`
     
@@ -49,7 +53,7 @@
     ```
     
 - `likePost(postId)`  
-    Permite a usuarios dar “like” y dispara lógica de reputación.
+    Permite a usuarios dar "like" y dispara lógica de reputación.
     
 - `submitChallengeSolution(challengeId, solutionData)`  
     Envía solución a reto para revisión y posible premio.
@@ -129,9 +133,9 @@
 
 ## 🎓 Enfoque académico para la memoria
 
-- Justificación social y tecnológica del proyecto.
+- Justificación social y tecnológica del proyecto → [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
     
-- Diseño del tokenomics y estructura de recompensas.
+- Diseño del tokenomics y estructura de recompensas → [[4 - Tokenomics]]
     
 - Elección del stack tecnológico.
     
@@ -142,3 +146,14 @@
 - Métricas relevantes: número de posts, usuarios activos, tokens en circulación.
     
 - Futuras mejoras: privacidad, interoperabilidad, gamificación avanzada.
+
+---
+
+## 📊 Documentos Relacionados
+
+- [[2 - Modelo de negocio]] - Concepto y roles del sistema
+- [[3 - Monetización]] - Streams de ingresos y comisiones
+- [[4 - Tokenomics]] - Economía del token CODE
+- [[5 - Whitepaper]] - Documento técnico completo
+- [[Framework de diseño/2 - Value proposition canvas]] - Canvas de propuesta de valor
+- [[index]] - Página principal del proyecto

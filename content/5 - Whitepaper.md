@@ -1,8 +1,12 @@
 # Whitepaper CodeHub
 
+> 📚 **Documentación Completa**: [[index]] | [[1 - Arquitectura]] | [[2 - Modelo de negocio]] | [[4 - Tokenomics]] | [[3 - Monetización]]
+
 ## 1. Introducción
 
 CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrolladores. Combina publicación de contenido, retos técnicos y mecanismos de gobernanza DAO mediante el uso del token `CodeToken (CODE)`, para incentivar la participación, colaboración y toma de decisiones democráticas.
+
+> 🎯 **Propuesta de valor**: [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
 
 ## 2. Problema y Solución
 
@@ -22,6 +26,8 @@ CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrol
 - Token `CODE` como medio de recompensa, acceso y voto.
     
 - DAO para definir el rumbo de la plataforma, sus reglas y recursos.
+
+> 💡 **Análisis detallado**: [[Framework de diseño/2 - Value proposition canvas]] | [[2 - Modelo de negocio]]
     
 
 ## 3. Token `CodeToken (CODE)`
@@ -35,6 +41,8 @@ CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrol
 - Participar activamente en gobernanza DAO.
     
 - Reforzar la reputación y el reconocimiento on-chain.
+
+> 🔧 **Implementación técnica**: [[1 - Arquitectura#Smart Contracts]]
     
 
 ### Especificaciones
@@ -60,6 +68,8 @@ CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrol
 |Marketing y Airdrops|100,000 CODE|10%|Difusión inicial y campañas|
 |Liquidity Pool|100,000 CODE|10%|CODE/USDC en DEXs|
 |Reserva Estratégica|50,000 CODE|5%|Fondos para alianzas o emergencias|
+
+> 📊 **Detalles completos**: [[4 - Tokenomics#Tokenomics Propuesta]]
 
 ### Vesting
 
@@ -94,6 +104,8 @@ Implementado vía `VestingWallet` y multisig de la DAO.
 |Período de votación|3 días|
 |Delay de ejecución|1 día tras aprobación|
 
+> 🏛️ **Modelo de gobernanza**: [[4 - Tokenomics#Gobernanza DAO]] | [[2 - Modelo de negocio#Roles del Sistema]]
+
 ### Ámbitos de decisión
 
 - Emisión de tokens o distribución especial.
@@ -126,6 +138,8 @@ Implementado vía `VestingWallet` y multisig de la DAO.
 - Pool CODE/USDC inicial.
     
 - Precio sugerido: 1 CODE = 1 USDC.
+
+> 💰 **Monetización**: [[3 - Monetización]] | [[Framework de diseño/3 - Conexión Negocio - Token]]
     
 
 ## 7. Flujo de Usuario
@@ -148,6 +162,8 @@ Implementado vía `VestingWallet` y multisig de la DAO.
 2. Ganan tokens CODE.
     
 3. Acceden a contenido exclusivo o funciones DAO.
+
+> 🔄 **Flujo detallado**: [[2 - Modelo de negocio#Flujo del Sistema]]
     
 
 ## 8. Reputación Descentralizada
@@ -159,7 +175,7 @@ Implementado vía `VestingWallet` y multisig de la DAO.
 - Parte de la información on-chain, visualizada en frontend.
     
 
-## 9. Propuesta de implementación (Tokenomics)
+## 9. Cálculo de Recompensas
 
 Para alinear las recompensas con el valor real generado por cada publicación y garantizar la sostenibilidad de la economía de tokens CODE, se propone el siguiente esquema:
 
@@ -179,6 +195,8 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
     
 4. **Comisión de reclamación**  
     Al reclamar tokens, se aplica una tasa del **2 %** que se destina al **DAO Treasury** para financiar mejoras, grants y liquidez.
+
+> 🔧 **Implementación técnica**: [[1 - Arquitectura#calculatePostReward]] | [[4 - Tokenomics#Cálculo de Recompensas]]
     
 
 ## 10. ¿Por qué CODE y no solo stablecoins?
@@ -192,3 +210,14 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
 |Valorización|Estable|Depende del éxito de la DAO|
 |Gobernanza|No aplica|Cada CODE es voto|
 |Beneficio fundadores|No aplica|Vesting y treasury compartido|
+
+---
+
+## 📊 Documentos Relacionados
+
+- [[1 - Arquitectura]] - Implementación técnica completa
+- [[2 - Modelo de negocio]] - Concepto y flujo del sistema
+- [[3 - Monetización]] - Streams de ingresos y sostenibilidad
+- [[4 - Tokenomics]] - Economía detallada del token
+- [[Framework de diseño/|Framework de diseño]] - Marco conceptual y análisis
+- [[index]] - Página principal del proyecto
