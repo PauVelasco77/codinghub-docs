@@ -5,13 +5,19 @@ description: Una plataforma descentralizada donde los desarrolladores ganan toke
 
 # 🚀 **CodeHub** - Plataforma Tokenizada para Developers
 
-> *Una plataforma tipo dev.to con incentivos tokenizados, donde cada contribución es recompensada y la comunidad decide el futuro a través de una DAO.*
+> *Una extensión Web3 de [Forem](https://github.com/forem/forem) (la base de dev.to) con incentivos tokenizados, donde cada contribución es recompensada y la comunidad decide el futuro a través de una DAO.*
 
 ---
 
 ## 🎯 **¿Qué es CodeHub?**
 
-CodeHub es una **plataforma descentralizada** que revoluciona cómo los desarrolladores comparten conocimiento y colaboran. Utilizando tecnología **blockchain** y **tokenomics justos**, recompensa automáticamente las contribuciones valiosas mientras mantiene la transparencia y el control comunitario.
+CodeHub es una **plataforma descentralizada** que combina la madurez de Forem (la base de dev.to) con innovación Web3. Utilizando tecnología **blockchain** y **tokenomics justos**, recompensa automáticamente las contribuciones valiosas mientras mantiene la transparencia y el control comunitario.
+
+### 🔑 **Estrategia Tecnológica**
+- 🏗️ **Base sólida**: Forem como fundación (22.3k stars, 713 contributors)
+- ⚡ **Desarrollo acelerado**: Reducción 60-80% en tiempo vs desarrollo desde cero
+- 🔗 **Extensión Web3**: Capa de tokenización sobre plataforma probada
+- 🏛️ **Gobernanza DAO**: Control comunitario descentralizado
 
 ### 🔑 **Características Principales**
 - 🪙 **Tokens por contribuir**: Gana `CODE` tokens por publicar posts, resolver retos y participar
@@ -24,8 +30,8 @@ CodeHub es una **plataforma descentralizada** que revoluciona cómo los desarrol
 ## 📚 **Documentación del Proyecto**
 
 ### 🏗️ **Fundamentos Técnicos**
-- **[[1 - Arquitectura]]** - Stack tecnológico, smart contracts y funciones clave del sistema
-- **[[2 - Modelo de negocio]]** - Concepto, roles, flujo del sistema y diferenciadores únicos
+- **[[1 - Arquitectura]]** - Arquitectura híbrida Forem + Web3, smart contracts y funciones clave
+- **[[2 - Modelo de negocio]]** - Estrategia de desarrollo, roles del sistema y diferenciadores vs dev.to
 
 ### 💰 **Economía y Monetización**
 - **[[3 - Monetización]]** - Streams de ingresos, comisiones y modelo de sostenibilidad
@@ -39,22 +45,55 @@ CodeHub es una **plataforma descentralizada** que revoluciona cómo los desarrol
 
 ---
 
+## 🛠️ **Stack Tecnológico Híbrido**
+
+| Capa | Tecnologías |
+|------|-------------|
+| **Base Platform** | Forem (Ruby on Rails) + PostgreSQL |
+| **Frontend Extensions** | React components para Web3 + Tailwind CSS |
+| **Smart Contracts** | Solidity, Hardhat, OpenZeppelin |
+| **Web3 Services** | Node.js microservices + Express |
+| **Storage** | PostgreSQL (main) + IPFS (backup) |
+| **Blockchain** | Polygon, Arbitrum (L2s) |
+
+---
+
 ## 🎪 **Casos de Uso Principales**
 
 ### Para Developers
-- 📝 **Publica artículos** técnicos y gana tokens automáticamente
+- 📝 **Publica artículos** usando la UI familiar de Forem + recompensas automáticas
 - 🧩 **Resuelve retos** de programación por recompensas específicas  
 - 🗳️ **Participa en decisiones** de la plataforma a través de la DAO
 - 🏅 **Construye reputación** verificable con badges NFT
 
 ### Para la Comunidad
-- 🎯 **Propone mejoras** y nuevas funcionalidades
+- 🎯 **Propone mejoras** directamente desde Forem hacia smart contracts
 - 💡 **Crea retos** para impulsar el aprendizaje
-- 🔍 **Modera contenido** de forma descentralizada
+- 🔍 **Modera contenido** usando herramientas nativas de Forem
 - 💎 **Gobierna** el treasury y los incentivos
 
 ---
 
+## 🚀 **Ventajas vs dev.to**
+
+| Aspecto | dev.to (Forem puro) | CodeHub (Forem + Web3) |
+|---------|---------------------|-------------------------|
+| **Control** | Centralizado | DAO descentralizada |
+| **Incentivos** | No monetarios | Tokens CODE por contribuir |
+| **Reputación** | Interna | SBTs verificables on-chain |
+| **Decisiones** | Equipo dev.to | Votación comunitaria |
+
+---
+
+## 🚀 **Cómo Empezar**
+
+1. **Conecta tu wallet** (MetaMask, WalletConnect)
+2. **Usa Forem como siempre** - publica, comenta, interactúa
+3. **Reclama recompensas** automáticas en tokens CODE
+4. **Haz stake** de tus tokens para mejorar tu reputación
+5. **Vota en propuestas** para influir en el futuro de la plataforma
+
+---
 
 ## 🌟 **Roadmap y Visión**
 
@@ -64,6 +103,7 @@ CodeHub aspira a convertirse en el **estándar de facto** para comunidades de de
 - ✅ Los **incentivos** están alineados con el valor real aportado
 - ✅ La **comunidad** tiene control completo sobre su evolución
 - ✅ La **reputación** es portátil y verificable entre plataformas
+- ✅ La **base tecnológica** es sólida y probada (Forem)
 
 ---
 

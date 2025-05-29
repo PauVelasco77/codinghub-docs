@@ -4,11 +4,46 @@
 
 ## 1. Introducción
 
-CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrolladores. Combina publicación de contenido, retos técnicos y mecanismos de gobernanza DAO mediante el uso del token `CodeToken (CODE)`, para incentivar la participación, colaboración y toma de decisiones democráticas.
+CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrolladores. Utiliza [Forem](https://github.com/forem/forem) (la base tecnológica de dev.to) como fundación y agrega una capa de tokenización y gobernanza DAO mediante el uso del token `CodeToken (CODE)`, para incentivar la participación, colaboración y toma de decisiones democráticas.
 
 > 🎯 **Propuesta de valor**: [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
 
-## 2. Problema y Solución
+## 2. Estrategia Tecnológica: Forem + Web3
+
+### Justificación para usar Forem
+
+CodeHub adopta una estrategia híbrida aprovechando Forem como base tecnológica por las siguientes razones:
+
+**Ventajas técnicas:**
+- ✅ **Madurez demostrada**: Potencia dev.to con millones de usuarios activos
+- ✅ **Funcionalidades completas**: Sistema de posts, usuarios, moderation, APIs
+- ✅ **Comunidad activa**: 22.3k stars, 713 contributors, mantenimiento constante
+- ✅ **Escalabilidad probada**: Ruby on Rails + PostgreSQL para cargas altas
+- ✅ **Licencia compatible**: AGPL-3.0 permite modificación y extensión
+
+**Ventajas de desarrollo:**
+- ⚡ **Reducción tiempo**: 60-80% menos desarrollo vs plataforma desde cero
+- 🔧 **APIs listas**: RESTful API completa para integración Web3
+- 🎨 **UI/UX probada**: Interfaz familiar para desarrolladores
+- 🛡️ **Seguridad**: Años de hardening y patches de seguridad
+
+### Arquitectura híbrida propuesta
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Forem Base    │    │  Web3 Services   │    │ Smart Contracts │
+│  (Ruby/Rails)   │◄──►│   (Node.js)      │◄──►│   (Solidity)    │
+│                 │    │                  │    │                 │
+│ • Posts/Users   │    │ • Reward Calc    │    │ • CODE Token    │
+│ • Comments      │    │ • DAO Bridge     │    │ • Governance    │
+│ • Moderation    │    │ • Blockchain     │    │ • NFT Badges    │
+│ • Analytics     │    │   Indexer        │    │ • Treasury      │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+```
+
+> 🔧 **Detalles técnicos**: [[1 - Arquitectura#Arquitectura Híbrida Forem + Web3]]
+
+## 3. Problema y Solución
 
 ### Problema
 
@@ -21,7 +56,9 @@ CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrol
 
 ### Solución
 
-- Blockchain para asegurar propiedad, transparencia y trazabilidad.
+- **Base sólida**: Forem proporciona funcionalidades probadas de comunidad
+    
+- **Extensión Web3**: Blockchain para asegurar propiedad, transparencia y trazabilidad.
     
 - Token `CODE` como medio de recompensa, acceso y voto.
     
@@ -30,7 +67,7 @@ CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrol
 > 💡 **Análisis detallado**: [[Framework de diseño/2 - Value proposition canvas]] | [[2 - Modelo de negocio]]
     
 
-## 3. Token `CodeToken (CODE)`
+## 4. Token `CodeToken (CODE)`
 
 ### Propósito
 
@@ -58,7 +95,7 @@ CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrol
 - Supply Inicial: 1,000,000 CODE
     
 
-## 4. Distribución de Tokens
+## 5. Distribución de Tokens
 
 |**Categoría**|**Cantidad**|**% del Total**|**Notas**|
 |---|---|---|---|
@@ -82,7 +119,7 @@ CodeHub es una plataforma descentralizada gobernada por su comunidad de desarrol
 
 Implementado vía `VestingWallet` y multisig de la DAO.
 
-## 5. Gobernanza DAO
+## 6. Gobernanza DAO
 
 ### Mecanismo
 
@@ -117,7 +154,7 @@ Implementado vía `VestingWallet` y multisig de la DAO.
 - Validación de cambios estratégicos (nuevas funciones, integraciones).
     
 
-## 6. Economía del Token
+## 7. Economía del Token
 
 ### Control de Oferta
 
@@ -142,40 +179,40 @@ Implementado vía `VestingWallet` y multisig de la DAO.
 > 💰 **Monetización**: [[3 - Monetización]] | [[Framework de diseño/3 - Conexión Negocio - Token]]
     
 
-## 7. Flujo de Usuario
+## 8. Flujo de Usuario
 
 ### Creadores / Colaboradores
 
 1. Conectan wallet.
     
-2. Publican contenido o retos.
+2. Publican contenido en Forem (experiencia familiar).
     
-3. Reciben tokens si son validados.
+3. Reciben tokens automáticamente si son validados.
     
 4. Usan tokens para reputación, staking y votaciones.
     
 
 ### Lectores / Usuarios
 
-1. Interactúan comentando, votando o resolviendo retos.
+1. Interactúan como en dev.to: comentando, votando o resolviendo retos.
     
-2. Ganan tokens CODE.
+2. Ganan tokens CODE por participación activa.
     
 3. Acceden a contenido exclusivo o funciones DAO.
 
 > 🔄 **Flujo detallado**: [[2 - Modelo de negocio#Flujo del Sistema]]
     
 
-## 8. Reputación Descentralizada
+## 9. Reputación Descentralizada
 
 - Cada cuenta tiene un perfil visible con logros y contribuciones.
     
 - SBTs (Soulbound Tokens) opcionales como distintivos de mérito.
     
-- Parte de la información on-chain, visualizada en frontend.
+- Parte de la información on-chain, visualizada en frontend de Forem.
     
 
-## 9. Cálculo de Recompensas
+## 10. Cálculo de Recompensas
 
 Para alinear las recompensas con el valor real generado por cada publicación y garantizar la sostenibilidad de la economía de tokens CODE, se propone el siguiente esquema:
 
@@ -186,7 +223,7 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
     
     - Se añaden **2 CODE × log₂(visitas + 1)** al cálculo.
         
-    - Visitas filtradas contra bots y validadas off-chain.
+    - Visitas calculadas por analytics nativo de Forem.
         
     - Máximo adicional por post: **90 CODE**.
         
@@ -199,17 +236,26 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
 > 🔧 **Implementación técnica**: [[1 - Arquitectura#calculatePostReward]] | [[4 - Tokenomics#Cálculo de Recompensas]]
     
 
-## 10. ¿Por qué CODE y no solo stablecoins?
+## 11. ¿Por qué Forem + Web3 y no desarrollar desde cero?
 
-|   |   |   |
-|---|---|---|
-|**Aspecto**|**Stablecoins (USDC/DAI)**|**Token propio (CODE)**|
-|Utilidad|Solo medio de pago|Pago + voto + reputación|
-|Control|Externo|DAO total|
-|Fidelización|Limitada|Recompensas y gobernanza|
-|Valorización|Estable|Depende del éxito de la DAO|
-|Gobernanza|No aplica|Cada CODE es voto|
-|Beneficio fundadores|No aplica|Vesting y treasury compartido|
+| Aspecto | Desarrollo desde cero | Forem + Web3 (CodeHub) |
+|---------|----------------------|-------------------------|
+| **Tiempo desarrollo** | 18-24 meses | 6-8 meses |
+| **Riesgo técnico** | Alto | Bajo |
+| **Funcionalidades base** | A desarrollar | Ya probadas |
+| **Escalabilidad** | Incierta | Demostrada (dev.to) |
+| **Comunidad** | A construir | Aprovecha ecosistema Forem |
+| **Mantenimiento** | Full responsibility | Shared con comunidad Forem |
+
+### Ventajas competitivas vs dev.to
+
+| Aspecto | dev.to (Forem puro) | CodeHub (Forem + Web3) |
+|---------|---------------------|-------------------------|
+| **Control** | Centralizado | DAO descentralizada |
+| **Incentivos** | No monetarios | Tokens CODE transparentes |
+| **Reputación** | Interna/limitada | SBTs verificables on-chain |
+| **Decisiones** | Equipo dev.to | Votación comunitaria |
+| **Monetización** | Publicidad/sponsors | Tokenomics + comisiones |
 
 ---
 

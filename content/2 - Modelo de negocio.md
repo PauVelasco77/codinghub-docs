@@ -2,9 +2,11 @@
 
 > 🔗 **Relacionado**: [[1 - Arquitectura]] | [[4 - Tokenomics]] | [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
 
-### 🔑 Concepto Clave:
+### �� Concepto Clave:
 
-- Plataforma tipo dev.to con posts, artículos y retos para developers.
+- **Base estratégica**: Utilizar [Forem](https://github.com/forem/forem) (la plataforma que potencia dev.to) como fundación
+    
+- **Extensión Web3**: Agregar capa de tokenización y gobernanza DAO sobre Forem
     
 - Usuarios ganan **tokens por contribuir**: publicar posts, resolver retos, comentar, etc.
     
@@ -12,15 +14,40 @@
     
 - Todo registro de contribuciones y recompensas queda **on-chain**, auditado y gobernado por la comunidad DAO.
 
+> 💡 **Ventaja competitiva**: Combinar la madurez de Forem con innovación Web3
+
+---
+
+## 🏗️ **Estrategia de Desarrollo: Forem + Web3**
+
+### ¿Por qué Forem como base?
+
+| Ventaja | Impacto |
+|---------|---------|
+| **Tiempo de desarrollo** | Reducción 60-80% vs desarrollo desde cero |
+| **Funcionalidades probadas** | Sistema de posts, usuarios, moderación ya maduro |
+| **Comunidad establecida** | 22.3k stars, 713 contributors activos |
+| **Escalabilidad demostrada** | Potencia dev.to con millones de usuarios |
+| **Licencia AGPL-3.0** | Compatible con proyecto open source |
+
+### Fases de implementación
+
+1. **Fase 1 - Base Forem**: Desplegar instancia customizada de Forem
+2. **Fase 2 - Smart Contracts**: Desarrollar tokenomics y DAO on-chain
+3. **Fase 3 - Integración**: Conectar Forem con blockchain via microservicios
+4. **Fase 4 - UX Web3**: Extender UI para wallet, votaciones y recompensas
+
+> 🔧 **Detalles técnicos**: [[1 - Arquitectura#Arquitectura Híbrida Forem + Web3]]
+
 ---
 
 ## 👥 Roles del Sistema
 
-|**Rol**|**Función**|
-|---|---|
-|Developer / Usuario|Publica posts, participa en retos y gana tokens.|
-|Moderador / Admin|Modera contenido, valida retos y administra el sistema.|
-|DAO (comunidad)|Aprueba propuestas, define reglas, distribuye incentivos y gestiona el treasury.|
+|**Rol**|**Función en Forem**|**Función Web3**|
+|---|---|---|
+|Developer / Usuario|Publica posts, comenta, interactúa|Conecta wallet, reclama tokens, participa en DAO|
+|Moderador / Admin|Modera contenido usando herramientas nativas|Valida contribuciones para recompensas|
+|DAO (comunidad)|N/A (nuevo)|Aprueba propuestas, define reglas, gestiona treasury|
 
 > 💡 Ver detalles técnicos en [[1 - Arquitectura#Smart Contracts]]
 
@@ -31,53 +58,69 @@
 |   |   |   |
 |---|---|---|
 |**Elemento**|**Tipo de Token**|**Función**|
-|Contribuciones|ERC-20 `CodeToken`|Recompensas por acciones dentro de la plataforma.|
-|Reputación|Soulbound Token (SBT)|Reconocimiento no transferible vinculado al historial de participación.|
-|Retos y logros|NFTs|Badges únicos por hitos y completitud de desafíos.|
+|Contribuciones (posts, comments)|ERC-20 `CodeToken`|Recompensas por acciones dentro de Forem|
+|Reputación|Soulbound Token (SBT)|Reconocimiento no transferible vinculado al historial|
+|Retos y logros|NFTs|Badges únicos por hitos y completitud de desafíos|
 
 > 🔍 **Profundizar**: [[4 - Tokenomics]] | [[Framework de diseño/2 - Value proposition canvas]]
 
 ---
 
-## 🔄 Flujo del Sistema (DAO-Driven)
+## 🔄 Flujo del Sistema (Forem + DAO)
 
 |   |   |
 |---|---|
 |**Paso**|**Descripción**|
-|1. Creación de contenido o solución de retos|El usuario publica o responde un reto.|
-|2. Validación y recompensa|Moderadores o la DAO validan la contribución, calculan la recompensa según el modelo de [[4 - Tokenomics|tokenomics]] y emiten `CodeToken` tras la aprobación on-chain.|
-|3. Uso de Tokens|- Acceso a funciones premium.|
+|1. Creación de contenido|Usuario publica en Forem (experiencia nativa)|
+|2. Detección automática|Microservicios detectan nueva actividad y registran en blockchain|
+|3. Validación|Moderadores/DAO validan contribución según criterios de calidad|
+|4. Recompensa|Sistema calcula tokens según [[4 - Tokenomics|tokenomics]] y los distribuye|
+|5. Uso de Tokens|Acceso a funciones premium, participación en votaciones DAO|
+|6. Gobernanza|Propuestas creadas en Forem se sincronizan con smart contracts|
 
-- Participación en propuestas y votaciones.
-    
-- Compra de badges u otros beneficios NFT. | | 4. Gobernanza | Holders presentan propuestas (nuevos retos, cambios de reglas, ajustes económicos). La comunidad vota y ejecuta decisiones mediante `Governor` + `Timelock`. | | 5. Reputación | La actividad validada por la DAO se refleja en SBTs que muestran la trayectoria de cada usuario. |
-
-> ⚙️ **Implementación técnica**: [[1 - Arquitectura#Funciones clave de la DAO]]
-
----
-
-## 🛠️ Ejemplo Simplificado de Smart Contract
-
-```
-struct Post {
-  address author;
-  string contentURI;
-  uint256 timestamp;
-  bool validated;
-}
-
-struct Challenge {
-  uint256 id;
-  string description;
-  uint256 reward;
-  bool completed;
-  address completer;
-}
-```
+> ⚙️ **Implementación técnica**: [[1 - Arquitectura#Flujo de Integración Forem + Blockchain]]
 
 ---
 
-## 🧠 Tokenomics
+## 🛠️ Ejemplo de Integración
+
+### Estructura de datos híbrida
+```ruby
+# Forem (Rails) - Datos tradicionales
+class Article < ApplicationRecord
+  belongs_to :user
+  has_many :comments
+  # Funcionalidad nativa de Forem
+end
+
+# Extensión Web3
+class BlockchainReward < ApplicationRecord
+  belongs_to :article
+  belongs_to :user
+  
+  # Estado de la recompensa
+  enum status: { pending: 0, validated: 1, claimed: 2 }
+  
+  # Datos del smart contract
+  validates :transaction_hash, presence: true, if: :claimed?
+end
+```
+
+### API extendida
+```javascript
+// Endpoint nativo de Forem
+GET /api/articles/:id
+
+// Nuevos endpoints Web3
+GET /api/articles/:id/rewards
+POST /api/articles/:id/claim_reward
+GET /api/dao/proposals
+POST /api/dao/vote
+```
+
+---
+
+## 🧠 Tokenomics sobre Forem
 
 - Oferta inicial fija de **1,000,000 CODE**, modificable solo por votación en la DAO.
     
@@ -102,7 +145,7 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
     
     - Se añaden **2 CODE** × log₂(visitas + 1) al cálculo.
         
-    - Visitas filtradas contra bots y validadas off-chain.
+    - Visitas calculadas por analytics nativo de Forem.
         
     - Máximo adicional por post: **90 CODE**.
         
@@ -116,16 +159,15 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
 
 ---
 
-## 💡 Diferenciadores Clave
+## 💡 Diferenciadores Clave vs dev.to
 
-- Comunidad como centro de decisiones: DAO define reglas, recompensas y evolución del producto.
-    
-- Reputación transparente y verificable mediante SBTs.
-    
-- Incentivos justos mediante gobernanza tokenizada.
-    
-- Integración con identidades Web3 (ENS, Lens, Gitcoin Passport).    
-    - A través de SBTs y actividad validada por la DAO.
+| Aspecto | dev.to (Forem puro) | CodeHub (Forem + Web3) |
+|---------|---------------------|-------------------------|
+| **Control** | Centralizado | DAO descentralizada |
+| **Incentivos** | No monetarios | Tokens CODE por contribuir |
+| **Reputación** | Interna | SBTs verificables on-chain |
+| **Decisiones** | Equipo dev.to | Votación comunitaria |
+| **Monetización** | Publicidad tradicional | Tokenomics transparente |
 
 > 🎯 **Análisis detallado**: [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
 
@@ -133,7 +175,7 @@ Para alinear las recompensas con el valor real generado por cada publicación y 
 
 ## 📊 Documentos Relacionados
 
-- [[1 - Arquitectura]] - Implementación técnica del sistema
+- [[1 - Arquitectura]] - Implementación técnica híbrida Forem + Web3
 - [[3 - Monetización]] - Streams de ingresos y modelo económico  
 - [[4 - Tokenomics]] - Economía y distribución del token CODE
 - [[5 - Whitepaper]] - Documento técnico completo

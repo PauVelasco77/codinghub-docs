@@ -2,7 +2,45 @@
 
 > Ver también: [[2 - Modelo de negocio|Modelo de Negocio]] | [[4 - Tokenomics]] | [[Framework de diseño/3 - Conexión Negocio - Token]]
 
-#### 1. **Smart Contracts (Solidity + Viem)**
+## 🌟 **Opción Estratégica: Integración con Forem**
+
+> 💡 **Nueva Propuesta**: Utilizar [Forem](https://github.com/forem/forem) como base para acelerar el desarrollo de CodeHub
+
+**Ventajas de usar Forem:**
+- ✅ **Base probada**: El mismo código que potencia dev.to (22.3k stars, 713 contributors)
+- ✅ **Funcionalidades listas**: Sistema de posts, comentarios, usuarios, moderation
+- ✅ **Comunidad activa**: Mantenido por Forem con actualizaciones constantes
+- ✅ **Licencia AGPL-3.0**: Compatible con proyecto open source
+- ✅ **Stack Ruby on Rails**: Maduro y escalable para comunidades grandes
+
+**Integración propuesta:**
+- **Frontend Base**: Forem UI + extensiones Web3 (wallet connection, DAO interface)
+- **Backend Base**: Forem API + microservicios blockchain (indexing, reward calculation)
+- **Smart Contracts**: Capa adicional para tokenomics y gobernanza DAO
+
+> 🔧 **Implementación híbrida**: [[#Arquitectura Híbrida Forem + Web3]]
+
+---
+
+## 🏗️ **Arquitectura Híbrida Forem + Web3**
+
+#### 1. **Capa Base: Forem (Ruby on Rails)**
+
+**Funcionalidades nativas de Forem:**
+- Sistema de usuarios y perfiles
+- Publicación y gestión de artículos
+- Comentarios y reacciones
+- Sistema de tags y búsqueda
+- Moderation tools
+- API RESTful completa
+
+**Extensiones Web3 agregadas:**
+- Plugin de conexión de wallet (MetaMask, WalletConnect)
+- Dashboard de tokens CODE y recompensas
+- Interface de votación DAO
+- Visualización de reputación on-chain
+
+#### 2. **Smart Contracts (Solidity + Viem)**
 
 - Token ERC-20 (`CODE`) con extensión `ERC20Votes` para gobernanza.
     
@@ -64,28 +102,66 @@
 - `stakeTokens(uint256 amount)` / `unstakeTokens(uint256 amount)`  
     Permiten bloquear CODE para reputación, gobernanza y mejores condiciones de recompensa.
 
-#### 2. **Frontend (React + Viem + Wagmi + Shadcn UI + Tailwind)**
+#### 3. **Microservicios Web3 (Node.js + Express)**
 
-- Interfaz para creación de propuestas y votaciones on-chain.
+- **Blockchain Indexer**: Escucha eventos de contratos y sincroniza con Forem DB
     
-- Feed de posts con contador de visitas en tiempo real, retos y perfil con reputación.
+- **Reward Calculator**: Calcula recompensas basadas en métricas de Forem
     
-- Popup para reclamar recompensas: muestra `reward`, `commission` y opción de stake.
+- **DAO Bridge**: Conecta propuestas de Forem con smart contracts de gobernanza
+    
+- **Wallet Service**: Gestiona autenticación Web3 y firma de transacciones
 
-#### 3. **Backend (Node.js + Express + MongoDB/PostgreSQL)**
+#### 4. **Base de Datos Híbrida**
 
-- Indexación de eventos on-chain para seguimiento de votaciones, propuestas y recompensas.
-    
-- Servicio de métricas: calcula visitas filtradas (anti-bots) y expone API.
-    
-- Orquestador de reclamaciones: valida métricas off-chain antes de llamar `awardTokens`.
-    
+- **Forem PostgreSQL**: Datos tradicionales (posts, users, comments)
+- **Web3 Events Table**: Cache de eventos blockchain para performance
+- **Rewards Queue**: Cola de recompensas pendientes de distribución
 
-#### 4. **Almacenamiento descentralizado**
+#### 5. **Almacenamiento descentralizado**
 
-- IPFS / Arweave para posts, retos y propuestas de gobernanza.
+- IPFS / Arweave para respaldo de posts importantes y propuestas de gobernanza.
     
 - Metadatos JSON con conteo de visitas y métricas de engagement.
+
+---
+
+## 🔄 **Flujo de Integración Forem + Blockchain**
+
+### Publicación de Post
+1. **Usuario publica en Forem** (UI nativa)
+2. **Post se guarda en PostgreSQL** (Forem normal)
+3. **Microservicio detecta post** (webhook o polling)
+4. **Se llama `publishPost()`** en smart contract
+5. **Evento blockchain emitido** para tracking de recompensas
+
+### Reclamación de Recompensas
+1. **Usuario ve recompensas pendientes** (dashboard Web3)
+2. **Click en "Claim Rewards"** (UI extendida)
+3. **Microservicio valida métricas** (anti-bot, visitas reales)
+4. **Se llama `awardTokens()`** si validación exitosa
+5. **Tokens transferidos a wallet** del usuario
+
+### Votación DAO
+1. **Propuesta creada en Forem** (post especial)
+2. **Se sincroniza con smart contract** (`propose()`)
+3. **Usuarios votan desde Forem** (UI extendida)
+4. **Votos se registran on-chain** (`vote()`)
+5. **Ejecución automática** si propuesta aprobada
+
+---
+
+## 🛠️ **Stack Técnico Actualizado**
+
+| Capa | Tecnologías |
+|------|-------------|
+| **Base Platform** | Forem (Ruby on Rails) + PostgreSQL |
+| **Frontend Extensions** | React components para Web3 + Tailwind CSS |
+| **Smart Contracts** | Solidity + Hardhat + OpenZeppelin |
+| **Web3 Services** | Node.js microservices + Express |
+| **Blockchain** | Polygon, Arbitrum (L2s) |
+| **Storage** | PostgreSQL (main) + IPFS (backup) |
+| **Wallet Integration** | Wagmi + Viem + MetaMask |
 
 ---
 
@@ -103,22 +179,6 @@
 
 ---
 
-## 🛠️ **Stack**
-
-- **Frontend:** React, Tailwind CSS, Shadcn UI, Wagmi, Viem
-    
-- **Smart Contracts:** Solidity + Hardhat
-    
-- **Storage:** IPFS / Arweave para contenido
-    
-- **Backend:** Node.js, Express, MongoDB/PostgreSQL
-    
-- **Wallet:** MetaMask, WalletConnect
-    
-- **Testnet:** Polygon Mumbai, Arbitrum Goerli u otra L2 recomendada
-
----
-
 ## 🔐 Opciones adicionales
 
 - **Soulbound Tokens:** para badges y reputación no transferible.
@@ -133,11 +193,15 @@
 
 ## 🎓 Enfoque académico para la memoria
 
+- Justificación del uso de Forem como base técnica → Análisis de alternativas
+    
 - Justificación social y tecnológica del proyecto → [[Framework de diseño/1 - Modelo de Negocio y propuesta de valor]]
+    
+- Diseño de la integración blockchain + plataforma tradicional
     
 - Diseño del tokenomics y estructura de recompensas → [[4 - Tokenomics]]
     
-- Elección del stack tecnológico.
+- Elección del stack tecnológico híbrido.
     
 - Análisis de escalabilidad y costos (gas, uso de L2).
     
