@@ -2,7 +2,7 @@
 
 ### 🔑 Concepto Clave:
 
-- Plataforma tipo dev.to con posts, artículos y retos para developers.
+- Plataforma tipo [dev.to](https://www.dev.to) con posts, artículos y retos para developers.
     
 - Usuarios ganan **tokens por contribuir**: publicar posts, resolver retos, comentar, etc.
     
